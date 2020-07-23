@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="text/html; charset=utf-8">
+<title>OMOK</title>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+var bw=true;
+var size=0;
+$(document).ready(function(){
+	writePan();
+});
+
+</script>
+<style type="text/css">
+table {
+    width:500px;
+    height:500px;
+}
+td {
+    border-style:solid;
+    border-color:rgb(245, 245, 220);
+    background-color:rgb(245, 245, 220);
+}
+</style>
+</head>
+
+<body>
+<div>OMOK</div>
+<div id="ff">
+    <span>가로세로 사이즈</span>
+    <input></input>
+    <button onclick="writePan();">그리기</button>
+</div>
+<div>
+    <table id="pan"></table>
+</div>
+<div id="gr"></div>
+<button onclick="javascript:dasi();">다시하기</button>
+</body>
+
+<script type="text/javascript">
+function writePan(){
+	size=$('#ff input').val();
+	if(size>0){
+		var pc="";
+	    for(var cn=1;cn<=size;cn++){
+	        pc+="<tr id='col"+cn+"'>'";
+	        for(var rn=1;rn<=size;rn++)
+	        	pc+="<td id='row"+rn+"'></td>";
+	        pc+="</tr>";
+	    }
+	    $('#pan').append(pc);
+
+	    $('#ff button').hide();
+
+	    makeHoverEvent();
+	    makeClickEvent();
+	}
+}
+
+function makeHoverEvent(){
+	$('td').hover(function(){
+		if($(this).css('background-color')=='rgb(245, 245, 220)')
+			  $(this).css('background-color','rgb(211, 211, 211)');
+	}, function(){
+		if($(this).css('background-color')=='rgb(211, 211, 211)')
+			  $(this).css('background-color','rgb(245, 245, 220)');
+	});
+}
+
+function makeClickEvent(){
+    $('td').click(function(){
+    	if($(this).css('background-color')=='rgb(211, 211, 211)'){
+    		$(this).css('background-color',(bw?'rgb(0, 0, 0)':'rgb(255, 255, 255)'));
+    	    var x=$(this).attr('id').split('row')[1];
+    	    var y=$(this).parent().attr('id').split('col')[1];
+    	    var std=$("tr#col"+y+">td#row"+x).css('background-color');
+
+            var sb=checkShobu(x, y, std);
+            if(sb) {
+                if(bw) $('#gr').append("Black Win!!");
+                else $('#gr').append("White Win!!");
+                $('td').off();
+            }else bw=!bw;
+    	}
+    });
+}
+
+function checkShobu(x, y, std){
+	var rst=false;
+	if(garo(x, y, std)) rst=true;
+	else if(sero(x, y, std)) rst=true;
+	else if(jdg(x, y, std)) rst=true;
+	else if(udg(x, y, std)) rst=true;
+	return rst;
+}
+
+function garo(x, y, std){
+	var xdx=parseInt(x);
+	var ydx=parseInt(y);
+	var gchk=false;
+
+	var cnt=0;
+
+	while(xdx>1&&$("tr#col"+ydx+">td#row"+(xdx-1)).css('background-color')==std) xdx--;
+	while(xdx<=size&&$("tr#col"+ydx+">td#row"+(xdx++)).css('background-color')==std) cnt++;
+
+	if(cnt>=5) gchk=true;
+
+	return gchk;
+}
+
+function sero(x, y, std){
+	var xdx=parseInt(x);
+    var ydx=parseInt(y);
+    var schk=false;
+
+    var cnt=0;
+
+    while(ydx>1&&$("tr#col"+(ydx-1)+">td#row"+xdx).css('background-color')==std) ydx--;
+    while(ydx<=size&&$("tr#col"+(ydx++)+">td#row"+xdx).css('background-color')==std) cnt++;
+
+    if(cnt>=5) schk=true;
+
+    return schk;
+}
+
+function jdg(x, y, std){
+	var xdx=parseInt(x);
+    var ydx=parseInt(y);
+    var jchk=false;
+
+    var cnt=0;
+
+    while(xdx>1&&ydx>1&&$("tr#col"+(ydx-1)+">td#row"+(xdx-1)).css('background-color')==std) {
+    	xdx--;
+    	ydx--;
+    }
+    while(xdx<=size&&ydx<=size&&$("tr#col"+(ydx++)+">td#row"+(xdx++)).css('background-color')==std) cnt++;
+
+    if(cnt>=5) jchk=true;
+
+    return jchk;
+}
+
+function udg(x, y, std){
+	var xdx=parseInt(x);
+    var ydx=parseInt(y);
+    var uchk=false;
+
+    var cnt=0;
+
+    while(xdx<=size&&ydx>1&&$("tr#col"+(ydx-1)+">td#row"+(xdx+1)).css('background-color')==std) {
+        xdx++;
+        ydx--;
+    }
+    while(xdx>0&&ydx<=size&&$("tr#col"+(ydx++)+">td#row"+(xdx--)).css('background-color')==std) cnt++;
+
+    if(cnt>=5) uchk=true;
+
+    return uchk;
+}
+
+function dasi(){
+	location.reload();
+}
+</script>
+
+</html>
