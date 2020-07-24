@@ -1,0 +1,171 @@
+<!--  -->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta content="text/html; charset=utf-8">
+<title>YACHT</title>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    var p1=true;//선후공
+
+
+    $('#rollbutton').click(function(){
+    	diceRoll();
+    });
+});
+</script>
+<style type="text/css">
+    table#scoretable{
+        width:200px;
+        height:600px;
+        float:left;
+    }
+    table#scoretable th{
+        border-style:solid;
+        border-color:beige;
+        background-color:beige;
+        text-align:center;
+    }
+    table#scoretable td{
+        border-style:solid;
+        border-color:#fffff0;
+        background-color:#fffff0;
+        text-align:center;
+    }
+
+    table#keeptable {
+        width:600px;
+        height:120px;
+    }
+    table#keeptable td{
+        border-style:solid;
+        border-color:lightgray;
+        border-radius:12%;
+    }
+
+    table#rolltable{
+        width:600px;
+        height:450px;
+    }
+    table#rolltable td{
+        border-style:solid;
+        border-color:lightgray;
+        border-radius:7%;
+    }
+</style>
+</head>
+
+<body>
+<div>YACHT</div>
+
+<div id="scoreboard">
+    <table id="scoretable">
+        <tr id="trhead">
+            <th></th>
+            <th>P1</th>
+            <th>P2</th>
+        </tr>
+        <tr id="trones">
+            <td>ones</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="trtwos">
+            <td>twos</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="trthrees">
+            <td>threes</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="trfours">
+            <td>fours</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="trfives">
+            <td>fives</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="trsixes">
+            <td>sixes</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="trbonus">
+            <td>bonus</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="trchoice">
+            <td>choice</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="tr4ofakind">
+            <td>4 of a kind</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="trfullhouse">
+            <td>full house</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="trlittlestraight">
+            <td>little straight</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="trbigstraight">
+            <td>big straight</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr id="tryacht">
+            <td>yacht</td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<div id="gameboard">
+    <table id="keeptable">
+        <tr id="trkeep">
+            <td id="keepslot1"></td>
+            <td id="keepslot2"></td>
+            <td id="keepslot3"></td>
+            <td id="keepslot4"></td>
+            <td id="keepslot5"></td>
+        </tr>
+    </table>
+    <table id="rolltable">
+        <tr id="trroll1">
+            <td id="diceslot1"></td>
+            <td id="diceslot2"></td>
+            <td id="diceslot3"></td>
+        </tr>
+        <br/>
+        <tr id="trroll2">
+            <td id="diceslot4"></td>
+            <td id="diceslot5"></td>
+            <td id="rollbutton"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+
+<script type="text/javascript">
+function diceRoll(){
+
+}
+</script>
+
+</html>
