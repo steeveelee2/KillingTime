@@ -18,36 +18,41 @@ $(document).ready(function(){
 
     $('.diceslot').click(function(){
         var tmp=$(this).html();
-        $(this).html('');
+	if(!isNull(tmp)){
+		
+		$(this).html('');
 
-        $('.keepslot').each(function(){
-        	if(isNull($(this).html())) {
-        		$(this).html(tmp);
-        		return false;
-        	}
-        });
+        	$('.keepslot').each(function(){
+        		if(isNull($(this).html())) {
+        			$(this).html(tmp);
+        			return false;
+        		}
+        	});
 
-        avlDice--;
+        	avlDice--;
 
-        if(avlDice==0) chkScore();
-
+        	if(avlDice==0) chkScore();
+	}
     });
 
     $('.keepslot').click(function(){
     	if(rollCnt!=0){
     		var tmp=$(this).html();
-            $(this).html('');
+		if(!isNull(tmp)){
+			$(this).html('');
 
-            $('.diceslot').each(function(){
-                if(isNull($(this).html())) {
-                    $(this).html(tmp);
-                    return false;
-                }
-            });
+            		$('.diceslot').each(function(){
+                		if(isNull($(this).html())) {
+                    		$(this).html(tmp);
+                    		return false;
+                		}
+            		});
 
-            avlDice++;
+            		avlDice++;
 
-            cnlScore();
+            		cnlScore();
+		}
+            
     	}
     });
 
