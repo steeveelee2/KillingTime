@@ -59,6 +59,10 @@ $(document).ready(function(){
     $('.unlock').click(function(){
     	if(!isNull($(this).html())) lockScore($(this));
     });
+	
+    $('#resetBtn').click(function(){
+	reset();	
+    });
 
 });
 </script>
@@ -257,7 +261,7 @@ $(document).ready(function(){
 </div>
 
 <div id="reset">
-    <button id="resetBtn" onclick="javascript:reset();">판 엎기</button>
+    <button id="resetBtn">판 엎기</button>
 </div>
 
 </body>
