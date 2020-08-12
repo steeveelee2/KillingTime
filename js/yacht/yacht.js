@@ -53,6 +53,8 @@ $(document).ready(function(){
     	if(!isNull($(this).html())) lockScore($(this));
     });
 
+    $("#resetBtn").on("click", reset);
+
 });
 
 function isNull(par){
